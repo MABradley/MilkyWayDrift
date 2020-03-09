@@ -1,0 +1,9 @@
+# Using Python 3.8
+# python -m pip install requirements.txt
+kivy-deps.sdl2>=0.2.0
+Pillow>=7.0.0
+html5lib
+idna
+docutils>=0.16
+kivy>=1.11.1
+numpy>=1.18.1
