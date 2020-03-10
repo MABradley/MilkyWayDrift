@@ -1,0 +1,56 @@
+# This FloatLayout creates "floating" elements that drift based on the size of the screen
+# Here "hints" determine the fraction of window size to assign
+# the position of a button (derives from label) is considered from its bottom left (0,0) corner
+# This example combines sizing and placement methods to put 4 elements in the corners of the screen at any screen size
+FloatLayout:
+    # Background
+    canvas.before:
+        # Color applies to the Widgets and objects that follow it until replaced
+        Color:
+            rgba: 0.1, 0.1, 0.2, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        # similar color to the button rectangles, and sized to match them
+        Color:
+            rgba: 0.35, 0.35, 0.35, 1
+        # Here self refers to the FloatLayout widget, because rectangle is not a widget
+        Rectangle:
+            pos: 0, self.height - self.height * .1
+            size: self.width * 0.2, self.height * 0.1
+    # Foreground
+    canvas.after:
+        Color:
+            rgba: 0.8, 0.8, 0.8, 0.1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    # Middleground / Widgits
+    Button:
+        text: 'User Option 1'
+        pos_hint: {'x':0, 'y':0}
+        size_hint: 0.2, 0.1
+        color: 0,0,1,1
+    Button:
+        text: str(self.pos) # this updates realtime, which means it is a function run every frame? surprised
+        pos_hint: {'x':.8, 'y':0}
+        size_hint: 0.2, None
+        height: 80
+        color: 0,1,0,1
+    Label:
+        text: 'User Info'
+        pos_hint: {'x':0, 'y':.9}
+        size_hint: 0.2, 0.1
+    # Here self refers to the Button or Label widget, but self.parent provides us the LayoutWidget
+    Button:
+        text: 'User Option 3'
+        pos:self.parent.width - 200,self.parent.height*0.9
+        size_hint: None, 0.1
+        width: 200
+        color: 1,0,0,1
+    Label:
+        id: boo
+        text:"boo"
+        color: 1,1,1,1
+        # pos_hint:{"x":0,"y":0} # this centers it
+        pos_hint:{"center_x":0.5,"center_y":0.5} # this centers it also, seemingly different than button
