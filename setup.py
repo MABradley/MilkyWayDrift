@@ -13,6 +13,8 @@ setup(
         'docutils>=0.16',
         'kivy>=1.11.1',
         'numpy>=1.18.1',
+        'morton-py>=1.3',
+        'hexgrid-py>=1.3',
     ],
     license='MIT',
     long_description=open('README.md').read(),

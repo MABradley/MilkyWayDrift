@@ -1,4 +1,4 @@
-# Using Python 3.8
+# Using Python 3.8, Lower versions may or may not work
 # python -m pip install requirements.txt
 kivy-deps.sdl2>=0.2.0
 kivy-deps.glew>=0.2.0
@@ -8,3 +8,5 @@ idna
 docutils>=0.16
 kivy>=1.11.1
 numpy>=1.18.1
+morton-py>=1.3
+hexgrid-py>=1.3

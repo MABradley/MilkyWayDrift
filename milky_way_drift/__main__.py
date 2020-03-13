@@ -1,65 +1,25 @@
-import kivy
-import numpy
-#
-# Body():
-# (x, y)[]
-# position
-# (x1, x2, y)
-# momentum
-# (x1, x2, y)
-# momentum_next
-#
-#
-# def rotate((x, y)pivot, rotations
-#
-# ):
-#
-# # updates position
-#
-# def move((x1, x2, y)direction
-#
-# ):
-# # updates position and momentum_next
-#
-#
-# ImmutableBody(Body):
-#
-#
-# def rotate((x, y)pivot, rotations
-#
-# ):
-# return
-#
-#
-# def move((x1, x2, y)direction
-#
-# ):
-# return
-#
-# Ship(Body):
-# rotation_speed
-# speed
-# Facing[]
-# legal_moves  # which direction thrusters can take us, 1 non zero value in tuple
-#
-#
-# def rotate((x, y)pivot, rotations
-#
-# ):
-# # if you rotate your legal_moves must update
-#
-#
-# Map():
-# x_width
-# y_width
-# []
-# bodies
-#
-#
-# class Facing(Enum):
-#     YP = 0
-#     X1P = 1
-#     X2P = 2
-#     YN = 3
-#     X1N = 4
-#     X2N = 5
+"""
+Main
+================
+
+Application launch point for end user
+"""
+
+import data
+import ui
+
+# Configuration Parameters
+hex_rows = 28
+hex_columns = 14
+hex_width = 50
+hex_height = 50
+selection_mode = 'hex'  # 'square' (w s a d) or 'hex' (q w e a s d)
+selection_color = [.1, .1, .4, 0.6]  # rgba used to construct kivy Color
+grid_color = [.1, .1, .4, 1]  # rgba used to construct kivy Color
+grid_width = 1
+
+# "python __main__.py" to run in dev
+if __name__ == "__main__":
+    hex_app = ui.HexApp(hex_width, hex_height, hex_rows, hex_columns, selection_mode,
+                        selection_color, grid_color, grid_width)
+    hex_app.run()
