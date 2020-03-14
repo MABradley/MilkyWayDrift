@@ -16,7 +16,7 @@ hex_height = 50
 selection_mode = 'hex'  # 'square' (w s a d) or 'hex' (q w e a s d)
 selection_color = [.1, .1, .4, 0.6]  # rgba used to construct kivy Color
 grid_color = [.1, .1, .4, 1]  # rgba used to construct kivy Color
-grid_width = 1
+grid_width = 2
 
 # "python __main__.py" to run in dev
 if __name__ == "__main__":
