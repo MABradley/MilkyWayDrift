@@ -20,11 +20,6 @@ def hex_at(x, y):
     return hexgrid.Hex(x, y - x//2)  # // is floor division (integer division)
 
 
-# takes a hexgrid.Hex and gives you its y coordinate in square coordinates
-def hex_y(h):
-    return h[0]//2 + h[1]
-
-
 def hex_vertices(grid, h):
     c = grid.hex_corners(h)
     return [c[0][0], c[0][1], 0, 0, c[1][0], c[1][1], 0, 0, c[2][0], c[2][1], 0, 0,
@@ -91,7 +86,7 @@ class HexApp(kivy.app.App):
         # label the hexes with square coordinates for developer reference
         for i in range(0, len(hex_grid.hexes)):
             h = hex_grid.hexes[i]
-            label = Label(text=str(h[0]) + ',' + str(hex_y(h)), width=10, height=10, color=(0.3, 0.3, 0.3, 1),
+            label = Label(text=str(h[0]) + ',' + str(h[1]), width=10, height=10, color=(0.3, 0.3, 0.3, 1),
                           x=grid.hex_center(h).x - 5, y=grid.hex_center(h).y - 5)
             hex_grid.add_widget(label)
         layout.add_widget(hex_grid)
@@ -130,7 +125,7 @@ class HexApp(kivy.app.App):
     def select_adjacent(self, x, y, use_hex):
         if use_hex:
             requested_hex = hexgrid.Hex(self.selected_hex[0] + x, self.selected_hex[1] + y)
-            square_y = hex_y(requested_hex)
+            square_y = requested_hex[1]
             if square_y < 0 or square_y >= self.height:
                 return
             else:
@@ -138,7 +133,7 @@ class HexApp(kivy.app.App):
                 return
         else:
             self.select_hex(max(min(self.selected_hex[0] + x, self.width - 1), 0),
-                            max(min(hex_y(self.selected_hex) + y, self.height - 1), 0), False)
+                            max(min(self.selected_hex[1]+ y, self.height - 1), 0), False)
 
     # Select a hex using square coordinates, unless use_hex is passed as true
     def select_hex(self, x, y, use_hex):
